@@ -5,6 +5,8 @@ phases:
     commands:
       - echo Version java...
       - java -version
+      - echo Access file
+      - chmod +x mvnw
       # Authenticate Docker to ECR
       - echo Obteniendo Credenciales...
       - aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 471112942110.dkr.ecr.us-west-1.amazonaws.com
