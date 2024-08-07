@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk17
+    commands:
+      # Authenticate Docker to ECR
+      - echo Obteniendo Credenciales
+      - aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 471112942110.dkr.ecr.us-west-1.amazonaws.com
+  pre_build:
+    commands:
+      - echo Clean Package
+      - mvnw clean package
+      - echo Building Docker images
+      - docker build --no-cache -t service1sb .
+  build:
+    commands:
+      - echo Tagging Docker images
+      - docker tag service1sb:latest 471112942110.dkr.ecr.us-east-1.amazonaws.com/service1sb:latest
+  post_build:
+    commands:
+      - echo Pushing the second Docker image to Amazon ECR...
+      - docker push 471112942110.dkr.ecr.us-east-1.amazonaws.com/service1sb:latest
+artifacts:
+  files:
+    - docker-compose.yml
