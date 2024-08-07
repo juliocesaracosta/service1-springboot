@@ -14,6 +14,7 @@ phases:
     commands:
       - echo Clean Package...
       - ./mvnw clean package
+
       - echo Building Docker images...
       - docker build --no-cache -t service1sb .
   build:
