@@ -19,11 +19,11 @@ phases:
   build:
     commands:
       - echo Tagging Docker images
-      - docker tag service1sb:latest 471112942110.dkr.ecr.us-east-1.amazonaws.com/service1sb:latest
+      - docker tag service1sb:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/service1sb:latest
   post_build:
     commands:
       - echo Pushing the second Docker image to Amazon ECR...
-      - docker push 471112942110.dkr.ecr.us-east-1.amazonaws.com/service1sb:latest
+      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service1sb:latest
 artifacts:
   files:
     - docker-compose.yml
